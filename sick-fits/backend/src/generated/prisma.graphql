@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/mark-conlon/sicccccck-fits/dev
-# timestamp: Sat Oct 13 2018 12:33:10 GMT-0400 (EDT)
+# timestamp: Sun Nov 11 2018 16:12:08 GMT-0500 (Eastern Standard Time)
 
 type AggregateUser {
   count: Int!
@@ -21,7 +21,7 @@ type Mutation {
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   deleteUser(where: UserWhereUniqueInput!): User
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
@@ -71,7 +71,7 @@ type Subscription {
 type User implements Node {
   id: ID!
   name: String!
-  email: String!
+  email: String
 }
 
 """A connection to a list of items."""
@@ -86,7 +86,7 @@ type UserConnection {
 
 input UserCreateInput {
   name: String!
-  email: String!
+  email: String
 }
 
 """An edge in a connection."""
@@ -114,7 +114,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   name: String!
-  email: String!
+  email: String
 }
 
 type UserSubscriptionPayload {
@@ -157,6 +157,11 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
+  name: String
+  email: String
+}
+
+input UserUpdateManyMutationInput {
   name: String
   email: String
 }
